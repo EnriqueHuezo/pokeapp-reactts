@@ -1,10 +1,17 @@
 import React from 'react'
 import { PokemonPreviewProps } from '../types'
 import { PokemonTypeList } from './PokemonTypeList'
+import { useNavigate } from 'react-router'
 
 export const PokemonCardPreview: React.FC<PokemonPreviewProps> = ({ pokemon }) => {
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        navigate(`/pokemon/${pokemon.id}`)
+    }
+
     return (
-        <article className="w-full rounded-lg bg-white drop-shadow-xl p-4">
+        <article onClick={handleClick} className="w-full rounded-lg bg-white drop-shadow-xl p-4">
             <div className="relative flex justify-center items-center w-full h-32">
                 <figure className="relative text-center">
                     <img src={pokemon?.sprites.front_default} alt="sprite" className="relative z-10 max-w-full h-auto" />

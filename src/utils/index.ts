@@ -1,3 +1,7 @@
+export const calculateStat = (baseStat: number) => {
+    return (baseStat * 100) / 255
+}
+
 export const pastelColours = {
     normal: 'rgb(196, 204, 176)',
     fire: 'rgb(255, 179, 128)',
@@ -48,6 +52,15 @@ export const typeOptions = Object.keys(colours).map((key) => ({
     value: key,
     label: key.charAt(0).toUpperCase() + key.slice(1),
 }));
+
+export const stats = {
+    hp: 'HP',
+    attack: 'ATK',
+    defense: 'DEF',
+    'special-attack': 'SA',
+    'special-defense': 'SD',
+    speed: 'SPD'
+}
 
 export const navigationItems = [
     {
