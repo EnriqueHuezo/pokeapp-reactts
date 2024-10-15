@@ -47,3 +47,55 @@ interface Type {
     }
 }
 
+export interface AbilityList {
+    count: number;
+    next: string;
+    previous: string;
+    results: Ability[];
+}
+
+export interface Ability {
+    name: string;
+}
+
+export interface PokemonListProps {
+    listPokemon: PokemonDetail[];
+}
+
+export interface PokemonPreviewProps {
+    pokemon: PokemonDetail;
+}
+
+export interface PokemonTypeListProps {
+    listTypes: Type[];
+}
+
+export interface PokemonTypeProps {
+    typeName: Type['type']['name'];
+}
+
+export interface InputProps {
+    styles?: string,
+    placeholder: string,
+    value: string,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export interface TypeOptions {
+    value: string;
+    label: string;
+}
+
+interface DropdownMenuProps {
+    options: TypeOptions[];
+    onChange: (value: string) => void;
+    placeholder?: string;
+    styles?: string;
+}
+
+export interface ButtonProps {
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    label: string;
+    style?: string;
+    color?: string;
+}
