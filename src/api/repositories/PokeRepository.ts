@@ -1,4 +1,4 @@
-import { ListPokemon, PokemonDetail } from "../../types";
+import { AbilityList, ListPokemon, PokemonDetail } from "../../types";
 import { AxiosResponse } from "axios";
 import { ApiClient } from "../ApiClient";
 
@@ -12,4 +12,10 @@ export const PokemonRepository = {
         const response: AxiosResponse<PokemonDetail> = await ApiClient.get(`/pokemon/${id}`);
         return response.data;
     },
+
+    async getPokemonAbilities(): Promise<AbilityList> {
+        const response: AxiosResponse<AbilityList> = await ApiClient.get(`/ability?offset=0&limit=367`);
+        return response.data;
+    },
+
 }
