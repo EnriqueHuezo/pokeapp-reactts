@@ -64,6 +64,7 @@ export interface PokemonListProps {
 
 export interface PokemonPreviewProps {
     pokemon: PokemonDetail;
+    pokeTeam?: string;
 }
 
 export interface PokemonTypeListProps {
@@ -98,4 +99,28 @@ export interface ButtonProps {
     label: string;
     style?: string;
     color?: string;
+}
+
+export interface PokemonTeamsList {
+    listPokemon: PokemonTeam[]
+}
+
+export type PokemonTeams = PokemonTeam[]
+
+export interface PokemonTeam {
+    name: string;
+    pokemons: PokemonDetail[];
+}
+
+export interface PokemonsTeamsContextType {
+    pokemonsTeams: PokemonTeams;
+    addPokemonTeam: (nameTeam: string) => void;
+    addPokemonToTeam: (nameTeam: string, pokemon: PokemonDetail) => void;
+    removePokemonFromTeam: (nameTeam: string, pokemon: PokemonDetail) => void;
+    removePokemonTeam: (nameTeam: string) => void;
+}
+
+export interface ModalAddTeamProps {
+    toggleModal: () => void;
+    pokemon: PokemonDetail; 
 }

@@ -5,9 +5,12 @@ import { PokemonRepository } from "../api/repositories/PokeRepository"
 import { calculateStat, colours, pastelColours, stats } from "../utils"
 import { PokemonTypeList } from "../components/PokemonTypeList"
 import { Button } from "../components/Button"
+import { useModal } from "../hooks/useModal"
+import { ModalAddTeam } from "../components/ModalAddTeam"
 
 export const PokeDetails = () => {
     const { pokemonId } = useParams()
+    const { isOpen, toggleModal } = useModal()
     const [pokemon, setPokemon] = useState<PokemonDetail>()
     
     useEffect(() => {
@@ -89,7 +92,7 @@ export const PokeDetails = () => {
                         <div className='w-full flex justify-center'>
                             <Button
                                 label='Recruit'
-                                onClick={() => {}}
+                                onClick={toggleModal}
                                 color={typeColor}
                                 style={'max-w-[300px] w-full'}
                             />
@@ -97,6 +100,15 @@ export const PokeDetails = () => {
                     </div>
                 </div>
             </div>
+
+            {
+                isOpen && pokemon && (
+                    <ModalAddTeam
+                        toggleModal={toggleModal}
+                        pokemon={pokemon}
+                    />
+                )
+            }
         </section>
     )
 }

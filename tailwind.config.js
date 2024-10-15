@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         primary: "rgb(185 28 28)",
+        overlay: "rgba(0, 0, 0, 0.5)"
       }
     },
   },

@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { MainLayout } from './layout/MainLayout'
 import { Main } from './pages/Home'
 import { PokeDetails } from './pages/PokeDetails'
+import { PokeTeam } from './pages/PokeTeam'
+import { PokemonsTeamsProvider } from './context/PokemonsTeamsProvider'
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'poketeams',
-        element: <div>Team</div>
+        element: <PokeTeam />
       }
     ]
   }
@@ -28,6 +30,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <PokemonsTeamsProvider>
+      <RouterProvider router={router} />
+    </PokemonsTeamsProvider>
   </StrictMode>,
 )
