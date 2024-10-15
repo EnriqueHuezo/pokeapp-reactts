@@ -48,3 +48,14 @@ export const typeOptions = Object.keys(colours).map((key) => ({
     value: key,
     label: key.charAt(0).toUpperCase() + key.slice(1),
 }));
+
+export const navigationItems = [
+    {
+        name: 'Home',
+        url: '/'
+    },
+    {
+        name: 'PokeTeam',
+        url: '/poketeams'
+    }
+]
