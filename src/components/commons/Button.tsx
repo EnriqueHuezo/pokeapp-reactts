@@ -1,7 +1,7 @@
 import { ButtonProps } from "../../types"
 
 export const Button: React.FC<ButtonProps> = ({ onClick, label, style, type = 'filled' }) => {
-  const typeButton = type === 'filled' ? 'bg-primary' : 'border border-primary bg-white text-red-800';
+  const typeButton = type === 'filled' ? 'bg-primary' : 'border border-primary bg-white text-red-700';
   
   return (
     <button 
