@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { usePokemonsTeams } from "../hooks/usePokemonsTeams"
 import { ModalAddPokemonToTeamProps } from "../types"
-import { DropdownMenu } from "./DropDownMenu"
+import { DropDownMenu } from "../components/DropDownMenu"
 import { Button } from "./Button"
 import { Input } from "./Input"
 
@@ -46,7 +46,7 @@ export const ModalAddPokemonToTeam: React.FC<ModalAddPokemonToTeamProps> = ({ to
                             </div>
 
                             <div className="flex sm:flex-row flex-col gap-4">
-                                <DropdownMenu
+                                <DropDownMenu
                                     options={pokemonsTeams.map(team => ({ value: team.name, label: team.name }))}
                                     onChange={onTeamSelected}
                                     placeholder="Select Team"

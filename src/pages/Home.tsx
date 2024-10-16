@@ -4,7 +4,7 @@ import { usePokemons } from "../hooks/usePokemons"
 import { PokemonList } from "../components/PokemonList"
 import { typeOptions } from "../utils"
 import { Input } from "../components/Input"
-import { DropdownMenu } from "../components/DropDownMenu"
+import { DropDownMenu } from "../components/DropDownMenu"
 
 export const Main = () => {
   const { isIntersecting, ref } = useIntersectionObserver({ threshold: 0.5 })
@@ -61,14 +61,14 @@ export const Main = () => {
         />
 
         <div className="w-full flex flex-row gap-4">
-          <DropdownMenu 
+          <DropDownMenu 
             styles="w-full"
             options={typeOptions}
             onChange={(value) => handleChangeType(value)}
             placeholder="All types"
           />
 
-          <DropdownMenu
+          <DropDownMenu
             styles="w-full"
             options={abilities}
             onChange={(value) => handleChangeAbility(value)}
