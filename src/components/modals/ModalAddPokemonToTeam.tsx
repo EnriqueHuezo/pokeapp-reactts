@@ -57,6 +57,7 @@ export const ModalAddPokemonToTeam: React.FC<ModalAddPokemonToTeamProps> = ({ to
                                     label="Add pokemon"
                                     onClick={handleAddPokemonToTeam}
                                     color="red"
+                                    type="filled"
                                 />
                             </div>
                         </div>
@@ -79,6 +80,7 @@ export const ModalAddPokemonToTeam: React.FC<ModalAddPokemonToTeamProps> = ({ to
                                     label="Create Team"
                                     onClick={handleAddPokemonTeam}
                                     color="red"
+                                    type="filled"
                                 />
                             </div>
                         </div>

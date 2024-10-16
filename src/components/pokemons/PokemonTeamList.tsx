@@ -43,8 +43,8 @@ export const PokemonTeamList: React.FC<PokemonTeamListProps> = ({ pokemonsTeamLi
           <div className="flex flex-row justify-between items-center">
             <h2 className="secondary-text">{pokemonTeam.name}</h2>
             <div className="flex md:flex-row flex-col gap-2">
-              <Button label="Edit Team" onClick={() => handleEditTeamName(pokemonTeam.name)} />
-              <Button label="Delete Team" onClick={() => handleDeleteTeam(pokemonTeam.name)} />
+              <Button label="Edit Team" type="filled" onClick={() => handleEditTeamName(pokemonTeam.name)} />
+              <Button label="Delete Team" type="filled" onClick={() => handleDeleteTeam(pokemonTeam.name)} />
             </div>
           </div>
           <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
