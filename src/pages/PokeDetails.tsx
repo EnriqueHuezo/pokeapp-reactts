@@ -6,7 +6,7 @@ import { calculateStat, colours, pastelColours, stats } from "../utils"
 import { PokemonTypeList } from "../components/PokemonTypeList"
 import { Button } from "../components/Button"
 import { useModal } from "../hooks/useModal"
-import { ModalAddTeam } from "../components/ModalAddTeam"
+import { ModalAddPokemonToTeam } from "../components/ModalAddPokemonToTeam"
 
 export const PokeDetails = () => {
     const { pokemonId } = useParams()
@@ -103,7 +103,7 @@ export const PokeDetails = () => {
 
             {
                 isOpen && pokemon && (
-                    <ModalAddTeam
+                    <ModalAddPokemonToTeam
                         toggleModal={toggleModal}
                         pokemon={pokemon}
                     />

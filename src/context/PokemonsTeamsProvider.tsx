@@ -44,6 +44,23 @@ export const PokemonsTeamsProvider: React.FC<{ children: React.ReactNode }> = ({
         successToast('Team deleted successfully')
     }
 
+    const updatePokemonNameTeam = (nameTeam: string, newName: string) => {
+        if (!newName.trim()) {
+            errorToast('The team name cannot be empty')
+            return
+        }
+
+        const updatedTeams = pokemonsTeams.map(team => {
+            if(team.name === nameTeam) {
+                return { ...team, name: newName }
+            }
+            return team
+        })
+        setPokemonsTeams(updatedTeams)
+        updateLocalStorage(updatedTeams)
+        successToast('Team name updated successfully')
+    }
+
     const addPokemonToTeam = (nameTeam: string, pokemon: PokemonDetail) => {
         let isPokemonAdded = false;
         
@@ -94,7 +111,7 @@ export const PokemonsTeamsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
 
     return (
-        <PokemonsTeamsContext.Provider value={{ pokemonsTeams, addPokemonTeam, addPokemonToTeam, removePokemonFromTeam, removePokemonTeam }}>
+        <PokemonsTeamsContext.Provider value={{ pokemonsTeams, addPokemonTeam, addPokemonToTeam, removePokemonFromTeam, removePokemonTeam, updatePokemonNameTeam }}>
             {children}
         </PokemonsTeamsContext.Provider>
     )

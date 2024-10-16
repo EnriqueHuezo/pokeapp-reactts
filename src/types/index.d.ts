@@ -1,3 +1,4 @@
+// API Types
 export interface ListPokemon {
     count: number;
     next: string;
@@ -58,6 +59,7 @@ export interface Ability {
     name: string;
 }
 
+// Components Types
 export interface PokemonListProps {
     listPokemon: PokemonDetail[];
 }
@@ -77,7 +79,7 @@ export interface PokemonTypeProps {
 
 export interface InputProps {
     styles?: string,
-    placeholder: string,
+    placeholder?: string,
     value: string,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -118,9 +120,16 @@ export interface PokemonsTeamsContextType {
     addPokemonToTeam: (nameTeam: string, pokemon: PokemonDetail) => void;
     removePokemonFromTeam: (nameTeam: string, pokemon: PokemonDetail) => void;
     removePokemonTeam: (nameTeam: string) => void;
+    updatePokemonNameTeam: (nameTeam: string, newName: string) => void;
 }
 
-export interface ModalAddTeamProps {
+export interface ModalAddPokemonToTeamProps {
     toggleModal: () => void;
     pokemon: PokemonDetail; 
+}
+
+export interface ModalActionTeamProps {
+    toggleModal: () => void;
+    type: 'edit' | 'delete';
+    oldName?: string;
 }
