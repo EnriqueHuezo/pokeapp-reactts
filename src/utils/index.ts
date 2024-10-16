@@ -2,7 +2,7 @@ export const calculateStat = (baseStat: number) => {
     return (baseStat * 100) / 255
 }
 
-export const pastelColours = {
+export const pastelColours: Record<string, string> = {
     normal: 'rgb(196, 204, 176)',
     fire: 'rgb(255, 179, 128)',
     water: 'rgb(179, 200, 255)',

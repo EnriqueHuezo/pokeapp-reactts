@@ -3,10 +3,10 @@ import { useParams } from "react-router"
 import { PokemonDetail } from "../types"
 import { PokemonRepository } from "../api/repositories/PokeRepository"
 import { calculateStat, colours, pastelColours, stats } from "../utils"
-import { PokemonTypeList } from "../components/PokemonTypeList"
-import { Button } from "../components/Button"
+import { Button } from "../components/commons/Button"
 import { useModal } from "../hooks/useModal"
-import { ModalAddPokemonToTeam } from "../components/ModalAddPokemonToTeam"
+import { ModalAddPokemonToTeam } from "../components/modals/ModalAddPokemonToTeam"
+import { PokemonTypeList } from "../components/pokemons/PokemonTypeList"
 
 export const PokeDetails = () => {
     const { pokemonId } = useParams()

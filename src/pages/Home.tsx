@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react"
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver"
 import { usePokemons } from "../hooks/usePokemons"
-import { PokemonList } from "../components/PokemonList"
 import { typeOptions } from "../utils"
-import { Input } from "../components/Input"
-import { DropDownMenu } from "../components/DropDownMenu"
+import { Input } from "../components/commons/Input"
+import { DropDownMenu } from "../components/commons/DropDownMenu"
+import { PokemonList } from "../components/pokemons/PokemonList"
 
 export const Main = () => {
   const { isIntersecting, ref } = useIntersectionObserver({ threshold: 0.5 })

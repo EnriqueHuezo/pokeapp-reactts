@@ -1,5 +1,5 @@
 import Select from 'react-select'
-import { DropdownMenuProps } from '../types';
+import { DropdownMenuProps } from '../../types';
 
 export const DropDownMenu: React.FC<DropdownMenuProps> = ({
     options,

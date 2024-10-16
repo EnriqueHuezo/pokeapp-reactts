@@ -1,11 +1,11 @@
 import React from 'react'
-import { PokemonDetail, PokemonPreviewProps } from '../types'
-import { PokemonTypeList } from './PokemonTypeList'
+import { PokemonCardPreviewProps } from '../../types'
 import { useLocation, useNavigate } from 'react-router'
-import { usePokemonsTeams } from '../hooks/usePokemonsTeams'
-import { Button } from './Button'
+import { usePokemonsTeams } from '../../hooks/usePokemonsTeams'
+import { Button } from '../commons/Button'
+import { PokemonTypeList } from './PokemonTypeList'
 
-export const PokemonCardPreview: React.FC<PokemonPreviewProps> = ({ pokeTeam, pokemon }) => {
+export const PokemonCardPreview: React.FC<PokemonCardPreviewProps> = ({ pokemonTeam, pokemon }) => {
     const { removePokemonFromTeam } = usePokemonsTeams()
     const navigate = useNavigate()
     const location = useLocation()
@@ -16,7 +16,9 @@ export const PokemonCardPreview: React.FC<PokemonPreviewProps> = ({ pokeTeam, po
 
     const handleRemovePokemonFromTeam = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
-        removePokemonFromTeam(pokeTeam as string, pokemon as PokemonDetail)
+        if (pokemonTeam && pokemon) {
+            removePokemonFromTeam(pokemonTeam, pokemon);
+        }
     }
 
     return (

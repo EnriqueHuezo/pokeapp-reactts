@@ -1,11 +1,11 @@
 import React, { useState } from "react"
-import { PokemonTeams } from "../types"
+import { PokemonTeamListProps } from "../../types"
+import { useModal } from "../../hooks/useModal"
+import { Button } from "../commons/Button"
 import { PokemonCardPreview } from "./PokemonCardPreview"
-import { Button } from "./Button"
-import { useModal } from "../hooks/useModal"
-import { ModalActionTeam } from "./ModalActionTeam"
+import { ModalActionTeam } from "../modals/ModalActionTeam"
 
-export const PokemonTeamList: React.FC<{ pokemonsTeamList: PokemonTeams }> = ({ pokemonsTeamList }) => {
+export const PokemonTeamList: React.FC<PokemonTeamListProps> = ({ pokemonsTeamList }) => {
   const { isOpen, toggleModal } = useModal()
   const [type, setType] = useState<'edit' | 'delete'>('edit')
   const [oldName, setOldName] = useState<string>('')
@@ -35,7 +35,7 @@ export const PokemonTeamList: React.FC<{ pokemonsTeamList: PokemonTeams }> = ({ 
           </div>
           <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
             {pokemonTeam.pokemons.length > 0 ? pokemonTeam.pokemons.map((pokemon) => (
-              <PokemonCardPreview key={pokemon.id} pokemon={pokemon} pokeTeam={pokemonTeam.name} />
+              <PokemonCardPreview key={pokemon.id} pokemon={pokemon} pokemonTeam={pokemonTeam.name} />
             )) : (
               <p className="secondary-text">No pokemons in this team</p>
             )}

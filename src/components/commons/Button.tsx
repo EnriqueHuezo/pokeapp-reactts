@@ -1,4 +1,4 @@
-import { ButtonProps } from "../types"
+import { ButtonProps } from "../../types"
 
 export const Button: React.FC<ButtonProps> = ({ onClick, label, style, color = "rgb(185 28 28)" }) => {
   return (

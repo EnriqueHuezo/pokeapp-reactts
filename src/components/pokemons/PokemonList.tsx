@@ -1,5 +1,5 @@
 import React from "react"
-import { PokemonListProps } from "../types"
+import { PokemonListProps } from "../../types"
 import { PokemonCardPreview } from "./PokemonCardPreview"
 
 export const PokemonList: React.FC<PokemonListProps> = ({ listPokemon }) => {

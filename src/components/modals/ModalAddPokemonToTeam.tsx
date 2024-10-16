@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { usePokemonsTeams } from "../hooks/usePokemonsTeams"
-import { ModalAddPokemonToTeamProps } from "../types"
-import { DropDownMenu } from "../components/DropDownMenu"
-import { Button } from "./Button"
-import { Input } from "./Input"
+import { usePokemonsTeams } from "../../hooks/usePokemonsTeams"
+import { ModalAddPokemonToTeamProps } from "../../types"
+import { DropDownMenu } from "../commons/DropDownMenu"
+import { Button } from "../commons/Button"
+import { Input } from "../commons/Input"
 
 export const ModalAddPokemonToTeam: React.FC<ModalAddPokemonToTeamProps> = ({ toggleModal, pokemon }) => {
     const { pokemonsTeams, addPokemonToTeam, addPokemonTeam } = usePokemonsTeams()

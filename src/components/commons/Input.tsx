@@ -1,5 +1,5 @@
 import React from "react"
-import { InputProps } from "../types"
+import { InputProps } from "../../types"
 
 
 

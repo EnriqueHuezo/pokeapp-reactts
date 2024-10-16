@@ -1,6 +1,6 @@
-import { Button } from "../components/Button"
-import { Input } from "../components/Input"
-import { PokemonTeamList } from "../components/PokemonTeamList"
+import { Button } from "../components/commons/Button"
+import { Input } from "../components/commons/Input"
+import { PokemonTeamList } from "../components/pokemons/PokemonTeamList"
 import { usePokemonsTeams } from "../hooks/usePokemonsTeams"
 import React, { useState } from "react"
 
