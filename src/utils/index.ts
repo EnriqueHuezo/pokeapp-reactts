@@ -2,6 +2,30 @@ export const calculateStat = (baseStat: number) => {
     return (baseStat * 100) / 255
 }
 
+export function formatId(id: number) {
+    const idString = id.toString();
+
+    if (idString.length === 1) {
+        return `00${idString}`;
+    }
+
+    if (idString.length === 2) {
+        return `0${idString}`;
+    }
+
+    return idString;
+}
+
+export function formatIdWithNumeral(id: number) {
+    const idString = id.toString();
+
+    if (idString.length === 1 || idString.length === 2 || idString.length === 3) {
+        return `#${idString}`;
+    }
+
+    return idString;
+}
+
 export const pastelColours: Record<string, string> = {
     normal: 'rgb(196, 204, 176)',
     fire: 'rgb(255, 179, 128)',

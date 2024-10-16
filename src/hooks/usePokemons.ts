@@ -7,8 +7,10 @@ export function usePokemons() {
     const [pokemons, setPokemons] = useState<PokemonDetail[]>([]);
     const [abilities, setAbilities] = useState<TypeOptions[]>([]);
     const [nextUrl, setNextUrl] = useState<string | undefined>('/');
-    
-    const getPokemons = async (nextUrl: string = "?offset=0&limit=20") => {
+    const [loadingInitial, setLoadingInitial] = useState(false);
+    const [loadingMore, setLoadingMore] = useState(false);
+
+    const getPokemons = async (nextUrl: string = "?offset=0&limit=40") => {
         const response = await PokemonRepository.getPokemonList(nextUrl);
         const { results, next } = response;
 
@@ -23,16 +25,28 @@ export function usePokemons() {
     }
 
     const loadPokemons = async () => {
-        const { newPokemons, next } = await getPokemons();
-        setPokemons(newPokemons);
-        setNextUrl(next);
+        try {
+            setLoadingInitial(true);
+            const { newPokemons, next } = await getPokemons();
+            setPokemons(newPokemons);
+            setNextUrl(next);
+        } finally {
+            setLoadingInitial(false);
+        }
     }
 
     const loadMorePokemons = async () => {
-        const formattedNextUrl = nextUrl?.split('/').pop();
-        const { newPokemons, next } = await getPokemons(formattedNextUrl);
-        setPokemons(prev => [...prev, ...newPokemons]);
-        setNextUrl(next);
+        if (!nextUrl) return;
+
+        try {
+            setLoadingMore(true);
+            const formattedNextUrl = nextUrl?.split('/').pop();
+            const { newPokemons, next } = await getPokemons(formattedNextUrl);
+            setPokemons(prev => [...prev, ...newPokemons]);
+            setNextUrl(next);
+        } finally {
+            setLoadingMore(false);
+        }
     }
 
     const loadPokemonsAbilities = async () => {
@@ -44,10 +58,10 @@ export function usePokemons() {
         setAbilities(setAbilitiesFormat);
     }
 
-    useEffect(() => { 
-        loadPokemons() 
+    useEffect(() => {
+        loadPokemons()
         loadPokemonsAbilities();
     }, []);
 
-    return { pokemons, abilities, loadMorePokemons };
+    return { pokemons, abilities, loadingInitial, loadingMore, loadMorePokemons };
 }

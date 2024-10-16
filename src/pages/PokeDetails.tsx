@@ -2,31 +2,44 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { PokemonDetail } from "../types"
 import { PokemonRepository } from "../api/repositories/PokeRepository"
-import { calculateStat, colours, pastelColours, stats } from "../utils"
+import { calculateStat, colours, formatId, pastelColours, stats } from "../utils"
 import { Button } from "../components/commons/Button"
 import { useModal } from "../hooks/useModal"
 import { ModalAddPokemonToTeam } from "../components/modals/ModalAddPokemonToTeam"
 import { PokemonTypeList } from "../components/pokemons/PokemonTypeList"
+import { LoaderView } from "../components/loaders/LoaderView"
 
 export const PokeDetails = () => {
     const { pokemonId } = useParams()
     const { isOpen, toggleModal } = useModal()
     const [pokemon, setPokemon] = useState<PokemonDetail>()
-    
+    const [loading, setLoading] = useState<boolean>(true)
+     
     useEffect(() => {
-        PokemonRepository.getPokemonDetail(pokemonId)
-            .then(response => setPokemon(response))
-    }, [pokemonId])
+        const getPokemonData = async () => {
+            try {
+                setLoading(true);
+                const response = await PokemonRepository.getPokemonDetail(pokemonId);
+                setPokemon(response);
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        getPokemonData();
+    }, [pokemonId]);
 
     const typeColorPastel = pastelColours[pokemon?.types[0].type.name as keyof typeof pastelColours]
     const typeColor = colours[pokemon?.types[0].type.name as keyof typeof colours]
+
+    if(loading) return <LoaderView styles="h-dvh"/>
 
     return (
         <section className='h-dvh w-full md:flex md:flex-row md:justify-center md:items-center' style={{ background: typeColorPastel }}>
             <div className='md:basic-spacing pt-28 md:gap-8 flex md:flex-row-reverse flex-col md:h-auto h-full'>
                 <figure className='flex flex-col flex-1 justify-center items-center'>
                     <figcaption className='text-4xl font-black first-letter:uppercase' style={{ color: typeColor }}>{pokemon?.name}</figcaption>
-                    <p className='text-9xl font-bold text-white/90'>00{pokemon?.id}</p>
+                    <p className='text-9xl font-bold text-white/90'>{ pokemon?.id && formatId(pokemon.id) }</p>
                     <img className="object-fill md:size-70 size-40 relative -top-20 z-20" src={pokemon?.sprites.front_default} alt='sprite' />
                 </figure>
 
@@ -95,6 +108,7 @@ export const PokeDetails = () => {
                                 onClick={toggleModal}
                                 color={typeColor}
                                 style={'max-w-[300px] w-full'}
+                                type="filled"
                             />
                         </div>
                     </div>

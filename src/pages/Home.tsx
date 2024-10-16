@@ -5,10 +5,11 @@ import { typeOptions } from "../utils"
 import { Input } from "../components/commons/Input"
 import { DropDownMenu } from "../components/commons/DropDownMenu"
 import { PokemonList } from "../components/pokemons/PokemonList"
+import { LoaderView } from "../components/loaders/LoaderView"
 
 export const Main = () => {
   const { isIntersecting, ref } = useIntersectionObserver({ threshold: 0.5 })
-  const { pokemons, abilities, loadMorePokemons } = usePokemons()
+  const { pokemons, abilities, loadingInitial, loadingMore, loadMorePokemons } = usePokemons()
   const [name, setName] = useState<string>('')
   const [selectedType, setSelectedType] = useState<string>('')
   const [selectedAbility, setSelectedAbilitie] = useState<string>('')
@@ -50,6 +51,8 @@ export const Main = () => {
     setSelectedAbilitie(value)
   }
 
+  if (loadingInitial) return <LoaderView styles="h-dvh"/>
+
   return (
     <section className="basic-spacing">
       <section className="flex sm:flex-row flex-col justify-start gap-4 mb-6 w-full">
@@ -78,7 +81,18 @@ export const Main = () => {
 
       </section>
 
-      <PokemonList listPokemon={filteredPokemon} />
+      {
+        filteredPokemon.length > 0 ? (
+          <PokemonList listPokemon={filteredPokemon} />
+        ) : (
+          <p className="text-center">
+            No pokemons found. Please note that the search is based on the currently loaded data. 
+            More Pokémon might appear as you scroll or if you wait for all data to load.
+          </p>
+        )
+      }
+
+      {loadingMore && <LoaderView styles="pt-4" />}
 
       <span ref={ref}></span>
     </section>

@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router'
 import { usePokemonsTeams } from '../../hooks/usePokemonsTeams'
 import { Button } from '../commons/Button'
 import { PokemonTypeList } from './PokemonTypeList'
+import { formatIdWithNumeral } from '../../utils'
 
 export const PokemonCardPreview: React.FC<PokemonCardPreviewProps> = ({ pokemonTeam, pokemon }) => {
     const { removePokemonFromTeam } = usePokemonsTeams()
@@ -27,13 +28,14 @@ export const PokemonCardPreview: React.FC<PokemonCardPreviewProps> = ({ pokemonT
                <Button 
                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => { handleRemovePokemonFromTeam(e) }}
                    label="Remove"
+                   type='filled'
                 />
             ) }
             <div className="relative flex justify-center items-center w-full h-32">
                 <figure className="relative text-center">
                     <img src={pokemon?.sprites.front_default} alt="sprite" className="relative z-10 max-w-full h-auto" />
                     <figcaption className="absolute inset-0 flex justify-center items-center text-9xl text-black opacity-10 z-0 font-bold">
-                        #{pokemon?.id}
+                        {pokemon?.id && formatIdWithNumeral(pokemon.id)}
                     </figcaption>
                 </figure>
             </div>

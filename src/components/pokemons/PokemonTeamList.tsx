@@ -4,6 +4,7 @@ import { useModal } from "../../hooks/useModal"
 import { Button } from "../commons/Button"
 import { PokemonCardPreview } from "./PokemonCardPreview"
 import { ModalActionTeam } from "../modals/ModalActionTeam"
+import pokemonGroup from "../../assets/pokemon-group.png"
 
 export const PokemonTeamList: React.FC<PokemonTeamListProps> = ({ pokemonsTeamList }) => {
   const { isOpen, toggleModal } = useModal()
@@ -22,6 +23,19 @@ export const PokemonTeamList: React.FC<PokemonTeamListProps> = ({ pokemonsTeamLi
     toggleModal()
   }
 
+  if (pokemonsTeamList.length === 0) return (
+    <div className="flex flex-col items-center gap-4">
+      <figure>
+        <img
+          className={""}
+          src={pokemonGroup}
+          alt="Group image"
+        />
+      </figure>
+      <p className="title-text text-gray-500 !font-semibold text-center">Start by adding your first pokemon team!</p>
+    </div>
+  )
+
   return (
     <section className="flex flex-col gap-8">
       {pokemonsTeamList.map((pokemonTeam) => (
@@ -29,7 +43,7 @@ export const PokemonTeamList: React.FC<PokemonTeamListProps> = ({ pokemonsTeamLi
           <div className="flex flex-row justify-between items-center">
             <h2 className="secondary-text">{pokemonTeam.name}</h2>
             <div className="flex md:flex-row flex-col gap-2">
-              <Button label="Edit Team" onClick={() => handleEditTeamName(pokemonTeam.name)}/>
+              <Button label="Edit Team" onClick={() => handleEditTeamName(pokemonTeam.name)} />
               <Button label="Delete Team" onClick={() => handleDeleteTeam(pokemonTeam.name)} />
             </div>
           </div>
@@ -46,7 +60,7 @@ export const PokemonTeamList: React.FC<PokemonTeamListProps> = ({ pokemonsTeamLi
 
       {
         isOpen && (
-          <ModalActionTeam 
+          <ModalActionTeam
             toggleModal={toggleModal}
             type={type}
             oldName={oldName} />
